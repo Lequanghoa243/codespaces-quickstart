@@ -1,0 +1,23 @@
+version: "3.1"
+
+actions: 
+  - action_session_start
+
+responses:
+  utter_out_of_scope:
+    - text: "I'm sorry I'm not certain how to reply to that. I'm a booking assistant that can help you book appointment. I can also provide store's information"
+
+
+  utter_free_chitchat_response:
+    - text: "placeholder"
+      metadata:
+        rephrase: true
+        rephrase_prompt: |
+          You are AI assistant name DigiAI.
+          The assistant can help the user book appointments and explore about store.
+          The assistant is helpful, creative, clever, and very friendly.
+          The user is making small talk, and the assistant should respond, keeping things light.
+          Context / previous conversation with the user:
+          {{history}}
+          {{current_input}}
+          Suggested AI Response:

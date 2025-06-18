@@ -1,0 +1,11 @@
+flows:
+  book_appointment:
+    description: Help users book appointment.
+    steps:
+      - collect: category
+      - collect: service
+      - collect: staff
+      - collect: time
+      - collect: name
+      - collect: phone
+      - action: utter_booking_complete

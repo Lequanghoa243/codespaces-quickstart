@@ -1,0 +1,29 @@
+flows:
+  pattern_completed:
+    description: Completion of a user's flow
+    steps:
+    - noop: true
+      next: END
+
+  pattern_chitchat:
+    description: Conversation repair flow for off-topic interactions that won't disrupt the main conversation. should not respond to greetings or anything else for which there is a flow defined
+    name: pattern chitchat
+    steps:
+      - action: utter_free_chitchat_response
+
+  pattern_search:
+    description: Flow for handling knowledge-based questions
+    name: pattern search
+    steps:
+      - action: action_explore_store
+
+  out_of_scope:
+    description: Flow for any question not related to the store-related question.
+    steps:
+      - action: utter_out_of_scope
+
+  pattern_session_start:
+    description: Flow for starting the conversation
+    name: pattern session start
+    steps:
+      - action: action_session_start
