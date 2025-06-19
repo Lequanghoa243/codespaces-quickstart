@@ -1,0 +1,32 @@
+from rasa_sdk import Action, Tracker
+from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.events import SlotSet
+
+class ActionValidateAndPrompt(Action):
+    def name(self) -> str:
+        return "action_validate_and_prompt"
+    
+    def run(self, dispatcher, tracker, domain):
+        slot_value = tracker.get_slot("user_input")
+        
+        if not self.is_valid(slot_value):
+            dispatcher.utter_message(text="That input is not valid. Please try again.")
+            return [SlotSet("user_input", None)]
+        
+        return []
+Then use it in your flow:
+
+yaml
+flows:
+  my_flow:
+    description: My flow with validation
+    steps:
+      - id: collect_input
+        collect: user_input
+      - action: action_validate_and_prompt
+        next:
+          - if: slots.user_input is null
+            then: collect_input
+          - else: next_step
+      - id: next_step
+        action: utter_success

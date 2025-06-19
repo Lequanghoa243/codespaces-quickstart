@@ -1,5 +1,0 @@
-flows:
-  explore_store:
-    description: Help users looking for store's information.
-    steps:
-      - action: action_explore_store

@@ -1,11 +1,50 @@
 flows:
   book_appointment:
-    description: Help users book appointment.
+    description: use this flow to help users book an appointment.
     steps:
-      - collect: category
-      - collect: service
-      - collect: staff
+      - id: ask_category
+        collect: category
+        reset_after_flow_ends: false
+      - action: action_validate_category
+        next:
+          - if: slots.category is null
+            then: ask_category
+          - else: ask_service
+      - id: ask_service
+        collect: service
+        reset_after_flow_ends: false
+      - action: action_validate_service
+        next:
+          - if: slots.service is null
+            then: ask_service
+          - else: ask_more_booking
+      - id: ask_more_booking
+        collect: staff
       - collect: time
       - collect: name
       - collect: phone
       - action: utter_booking_complete
+
+  explore_service:
+    description: use this flow to help user explore services, use when user want to know more about the services.
+    steps:
+      - id: ask_category
+        collect: category
+        reset_after_flow_ends: false
+      - action: action_validate_category
+        next:
+          - if: slots.category is null
+            then: ask_category
+          - else: ask_service
+
+      - id: ask_service
+        collect: service
+        reset_after_flow_ends: false
+      - action: action_validate_service
+        next:
+          - if: slots.service is null
+            then: ask_service
+          - else: ask_booking
+
+      - id: ask_booking
+        action: utter_ask_booking

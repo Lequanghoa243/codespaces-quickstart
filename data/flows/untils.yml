@@ -1,0 +1,5 @@
+flows:
+  out_of_scope:
+    description: use this flow when the input's tpoic is not related to beauty store conversation of customer and AI assistant
+    steps:
+      - action: utter_out_of_scope

@@ -6,21 +6,16 @@ flows:
       next: END
 
   pattern_chitchat:
-    description: Conversation repair flow for off-topic interactions that won't disrupt the main conversation. should not respond to greetings or anything else for which there is a flow defined
+    description: Conversation repair flow for off-topic interactions that won't disrupt the main conversation use for handling knowledge-based questions. should not respond to anything else for which there is a flow defined
     name: pattern chitchat
     steps:
       - action: utter_free_chitchat_response
 
   pattern_search:
-    description: Flow for handling knowledge-based questions
+    description: Flow for handling knowledge-based store-related questions
     name: pattern search
     steps:
-      - action: action_explore_store
-
-  out_of_scope:
-    description: Flow for any question not related to the store-related question.
-    steps:
-      - action: utter_out_of_scope
+      - action: utter_free_chitchat_response
 
   pattern_session_start:
     description: Flow for starting the conversation

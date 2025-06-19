@@ -3,6 +3,8 @@ version: "3.1"
 actions:
   - action_ask_category
   - action_ask_service
+  - action_validate_category
+  - action_validate_service
 
 
 slots:
@@ -36,18 +38,22 @@ slots:
       - type: from_llm
 
 
+
 responses:
   utter_ask_name:
-    - text: "May I know your name?"
+    - text: "Lovely! May I have your name so I can reserve the spot for you?"
 
   utter_ask_phone:
-    - text: "What is your phone number?"
+    - text: "Thanks! Could you share your phone number so we can confirm the booking?"
 
   utter_ask_staff:
-    - text: "Do you have a preferred staff member?"
+    - text: "Do you have a preferred technician you'd like to book with, or should I pick the next available?"
 
   utter_ask_time:
-    - text: "When would you like to come in?"
+    - text: "Great! When would you like to come in for your appointment?"
 
   utter_booking_complete:
-    - text: "Thank you {name}! Your {service} with {staff} at {time} is confirmed. We’ve noted your phone number as {phone}."
+    - text: "You're all set, {name}! Your {service} with {staff} at {time} is confirmed. We've saved your number as {phone}. Looking forward to pampering you soon!"
+
+  utter_ask_booking:
+    - text: "Do you want me to help you book appointment for service {service} of category {category}?"
